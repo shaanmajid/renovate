@@ -280,10 +280,20 @@ export interface GlobalManagerConfig {
   npmrcMerge?: boolean;
 }
 
+export interface DepTypeMetadata {
+  /** The depType string value as set on PackageDependency.depType */
+  depType: string;
+  /** Human-readable display name (e.g. 'Dev Dependency' for 'devDependency') */
+  prettyDepType?: string;
+  /** Human-readable description of what this depType represents */
+  description: string;
+}
+
 interface ManagerApiBase extends ModuleApi {
   defaultConfig: Record<string, unknown>;
 
   categories?: Category[];
+  knownDepTypes?: DepTypeMetadata[];
   supportsLockFileMaintenance?: boolean;
   lockFileNames?: string[];
   supersedesManagers?: string[];

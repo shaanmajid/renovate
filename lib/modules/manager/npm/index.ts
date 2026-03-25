@@ -2,6 +2,7 @@ import type { Category } from '../../../constants/index.ts';
 import { GithubTagsDatasource } from '../../datasource/github-tags/index.ts';
 import { NodeVersionDatasource } from '../../datasource/node-version/index.ts';
 import { NpmDatasource } from '../../datasource/npm/index.ts';
+import type { DepTypeMetadata } from '../types.ts';
 
 export { updateArtifacts } from './artifacts.ts';
 export { detectGlobalConfig } from './detect.ts';
@@ -46,4 +47,57 @@ export const supportedDatasources = [
   GithubTagsDatasource.id,
   NpmDatasource.id,
   NodeVersionDatasource.id,
+];
+
+export const knownDepTypes: DepTypeMetadata[] = [
+  {
+    depType: 'dependency',
+    prettyDepType: 'Dependency',
+    description: 'Listed under `dependencies`',
+  },
+  {
+    depType: 'devDependency',
+    prettyDepType: 'Dev Dependency',
+    description: 'Listed under `devDependencies`',
+  },
+  {
+    depType: 'optionalDependency',
+    prettyDepType: 'Optional Dependency',
+    description: 'Listed under `optionalDependencies`',
+  },
+  {
+    depType: 'peerDependency',
+    prettyDepType: 'Peer Dependency',
+    description: 'Listed under `peerDependencies`',
+  },
+  {
+    depType: 'engine',
+    prettyDepType: 'Engine',
+    description: 'Listed under `engines`',
+  },
+  {
+    depType: 'volta',
+    prettyDepType: 'Volta',
+    description: 'Listed under `volta`',
+  },
+  {
+    depType: 'resolutions',
+    prettyDepType: 'Resolutions',
+    description: 'Listed under `resolutions` (Yarn)',
+  },
+  {
+    depType: 'packageManager',
+    prettyDepType: 'Package Manager',
+    description: 'Listed under `packageManager`',
+  },
+  {
+    depType: 'overrides',
+    prettyDepType: 'Overrides',
+    description: 'Listed under `overrides`',
+  },
+  {
+    depType: 'pnpm.overrides',
+    prettyDepType: 'pnpm Overrides',
+    description: 'Listed under `pnpm.overrides`',
+  },
 ];
