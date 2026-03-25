@@ -9,6 +9,7 @@ import type {
   PackageDependency,
   PackageFileContent,
 } from '../types.ts';
+import type { DockerfileDepType } from './dep-types.ts';
 
 const variableMarker = '$';
 
@@ -290,7 +291,7 @@ export function extractPackageFile(
           [lineNumberInstrStart, lineNumber],
         ];
         const dep = getDep(syntaxImage, true, config.registryAliases);
-        dep.depType = 'syntax';
+        dep.depType = 'syntax' satisfies DockerfileDepType;
         processDepForAutoReplace(dep, lineNumberRanges, lines, lineFeed);
         logger.trace(
           {
@@ -465,8 +466,8 @@ export function extractPackageFile(
     return null;
   }
   for (const d of deps) {
-    d.depType ??= 'stage';
+    d.depType ??= 'stage' satisfies DockerfileDepType;
   }
-  deps[deps.length - 1].depType = 'final';
+  deps[deps.length - 1].depType = 'final' satisfies DockerfileDepType;
   return { deps };
 }
